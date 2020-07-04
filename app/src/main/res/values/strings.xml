@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">OrangeApplication</string>
+    <string name="empty_list">Aucun programme qui correspond à votre recherche :(</string>
 </resources>
