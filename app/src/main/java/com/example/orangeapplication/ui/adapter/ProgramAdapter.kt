@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.item_program.view.*
 class ProgramAdapter(private val contents: ArrayList<Contents>) :
     RecyclerView.Adapter<ProgramAdapter.DataViewHolder>() {
 
+    var itemClick: ((Contents) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         DataViewHolder(
@@ -23,8 +24,13 @@ class ProgramAdapter(private val contents: ArrayList<Contents>) :
 
     override fun getItemCount(): Int = contents.size
 
-    override fun onBindViewHolder(holder: DataViewHolder, position: Int) =
+    override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
         holder.bind(contents[position])
+        holder.itemView.setOnClickListener {
+            itemClick?.invoke(contents[position])
+        }
+    }
+
 
     fun addData(list: List<Contents>) {
         contents.addAll(list)

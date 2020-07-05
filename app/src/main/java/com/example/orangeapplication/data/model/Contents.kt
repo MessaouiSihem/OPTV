@@ -1,6 +1,10 @@
 package com.example.orangeapplication.data.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
+
+@Parcelize
 data class Contents(
     var title: List<Title>,
     var subtitle: String,
@@ -8,4 +12,4 @@ data class Contents(
     var fullscreenimageurl: String,
     var id: String,
     var detaillink: String
-)
+) : Parcelable
