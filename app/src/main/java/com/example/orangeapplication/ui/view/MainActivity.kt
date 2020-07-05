@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 programViewModel?.let {
                     it.fetchPrograms("title%3D$query")
+                    search_view.clearFocus()
                     return true
                 }
             }

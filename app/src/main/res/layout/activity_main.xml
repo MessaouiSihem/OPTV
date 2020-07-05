@@ -14,7 +14,7 @@
         android:minHeight="?attr/actionBarSize"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/AppTheme.PopupOverlay"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        app:theme="@style/SearchViewTheme">
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/search_view"
