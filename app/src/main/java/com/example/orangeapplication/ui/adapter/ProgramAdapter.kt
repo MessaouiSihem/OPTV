@@ -42,8 +42,6 @@ class ProgramAdapter(private val contents: ArrayList<Contents>) :
 
             Picasso.get()
                 .load("http://statics.ocs.fr/" + content.imageurl)
-                //.placeholder(R.drawable.user_placeholder)
-                //.error(R.drawable.user_placeholder_error)
                 .into(itemView.image_program)
         }
     }

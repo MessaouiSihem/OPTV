@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OrangeApplication</string>
-    <string name="empty_list">Aucun programme qui correspond à votre recherche :(</string>
+    <string name="app_name">Orange Prestations TV</string>
+    <string name="empty_list">Aucun programme à afficher !</string>
     <string name="search">Trouver un programme</string>
 </resources>

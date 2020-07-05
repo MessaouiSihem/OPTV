@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.orangeapplication.R
 import com.example.orangeapplication.data.model.Program
 import com.example.orangeapplication.ui.adapter.ProgramAdapter
-import com.example.orangeapplication.ui.viewmodel.ProgramViewModel
-import com.example.orangeapplication.ui.viewmodel.base.ViewModelFactory
+import com.example.orangeapplication.viewmodel.ProgramViewModel
+import com.example.orangeapplication.viewmodel.base.ViewModelFactory
 import com.example.orangeapplication.utils.Status
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_layout.*
