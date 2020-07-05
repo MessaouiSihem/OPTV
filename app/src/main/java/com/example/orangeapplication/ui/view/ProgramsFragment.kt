@@ -39,8 +39,8 @@ class ProgramsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initUI()
         initViewModel()
+        initUI()
         setUpObserver()
     }
 
@@ -54,6 +54,7 @@ class ProgramsFragment : Fragment() {
                 }
             }
         }
+
 
         search_view.setOnQueryTextListener(object :
             SearchView.OnQueryTextListener {
@@ -69,6 +70,7 @@ class ProgramsFragment : Fragment() {
                 return false
             }
         })
+        search_view.setQuery("Enfant", true)
     }
 
     private fun openDetailProgram(content: Contents) {
