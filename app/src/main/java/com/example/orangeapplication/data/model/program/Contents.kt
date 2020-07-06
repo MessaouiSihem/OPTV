@@ -1,4 +1,4 @@
-package com.example.orangeapplication.data.model
+package com.example.orangeapplication.data.model.program
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

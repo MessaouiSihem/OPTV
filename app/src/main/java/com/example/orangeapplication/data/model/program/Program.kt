@@ -1,6 +1,6 @@
-package com.example.orangeapplication.data.model
+package com.example.orangeapplication.data.model.program
 
-import io.reactivex.Single
+import com.example.orangeapplication.data.model.program.Contents
 
 
 data class Program(

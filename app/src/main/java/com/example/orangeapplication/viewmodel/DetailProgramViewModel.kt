@@ -2,31 +2,29 @@ package com.example.orangeapplication.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-
 import androidx.lifecycle.ViewModel
-import com.example.orangeapplication.data.model.program.Program
+import com.example.orangeapplication.data.model.detail.DetailProgram
 import com.example.orangeapplication.data.repository.ProgramRepository
 import com.example.orangeapplication.utils.Resource
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
+class DetailProgramViewModel(private val repository: ProgramRepository) : ViewModel() {
 
-class ProgramViewModel(private val repository: ProgramRepository) : ViewModel() {
-
-    private var programs = MutableLiveData<Resource<Program>>()
+    private var detailProgram = MutableLiveData<Resource<DetailProgram>>()
     private val compositeDisposable = CompositeDisposable()
 
-    fun fetchPrograms(search: String) {
-        programs.postValue(Resource.loading(null))
+    fun fetchDetail(link: String) {
+        detailProgram.postValue(Resource.loading(null))
         compositeDisposable.add(
-            repository.getProgramList(search)
+            repository.getProgramDetail(link)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ userList ->
-                    programs.postValue(Resource.success(userList))
+                .subscribe({ detail ->
+                    detailProgram.postValue(Resource.success(detail))
                 }, { throwable ->
-                    programs.postValue(
+                    detailProgram.postValue(
                         Resource.error(
                             "Une erreur est survenue ! ${throwable.message}",
                             null
@@ -36,12 +34,13 @@ class ProgramViewModel(private val repository: ProgramRepository) : ViewModel() 
         )
     }
 
+
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()
     }
 
-    fun getPrograms(): LiveData<Resource<Program>> {
-        return programs
+    fun getDetail(): LiveData<Resource<DetailProgram>> {
+        return detailProgram
     }
 }
