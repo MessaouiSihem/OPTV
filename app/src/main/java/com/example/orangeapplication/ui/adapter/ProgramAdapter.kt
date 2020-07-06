@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.orangeapplication.R
-import com.example.orangeapplication.data.model.Contents
+import com.example.orangeapplication.data.model.program.Contents
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_program.view.*
 
