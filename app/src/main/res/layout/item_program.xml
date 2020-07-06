@@ -24,7 +24,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black"
+            app:fontFamily="@font/oswald_light"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/subtitle_program"
@@ -33,6 +34,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
+            app:fontFamily="@font/oswald_light"
             android:textColor="@android:color/darker_gray"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
