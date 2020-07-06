@@ -13,8 +13,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 
 import com.example.orangeapplication.R
-import com.example.orangeapplication.data.model.Contents
-import com.example.orangeapplication.data.model.Program
+import com.example.orangeapplication.data.model.program.Contents
+import com.example.orangeapplication.data.model.program.Program
 import com.example.orangeapplication.ui.adapter.ProgramAdapter
 import com.example.orangeapplication.utils.Status
 import com.example.orangeapplication.viewmodel.ProgramViewModel
@@ -35,6 +35,7 @@ class ProgramsFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_programs, container, false)
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -70,7 +71,9 @@ class ProgramsFragment : Fragment() {
                 return false
             }
         })
-        search_view.setQuery("Enfant", true)
+
+        // search_view.setQuery("Enfant", true)
+
     }
 
     private fun openDetailProgram(content: Contents) {
@@ -83,7 +86,7 @@ class ProgramsFragment : Fragment() {
 
     private fun initViewModel() {
         programViewModel = ViewModelProviders.of(
-            this, ViewModelFactory()
+            requireActivity(), ViewModelFactory()
         ).get(ProgramViewModel::class.java)
     }
 
