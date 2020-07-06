@@ -1,5 +1,6 @@
 package com.example.orangeapplication.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
@@ -17,14 +18,19 @@ class ProgramViewModel(private val repository: ProgramRepository) : ViewModel() 
     private var programs = MutableLiveData<Resource<Program>>()
     private val compositeDisposable = CompositeDisposable()
 
+    init {
+        fetchPrograms("title%3DAmour")
+    }
+
+
     fun fetchPrograms(search: String) {
         programs.postValue(Resource.loading(null))
         compositeDisposable.add(
             repository.getProgramList(search)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ userList ->
-                    programs.postValue(Resource.success(userList))
+                .subscribe({ programList ->
+                    programs.postValue(Resource.success(programList))
                 }, { throwable ->
                     programs.postValue(
                         Resource.error(

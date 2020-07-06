@@ -1,7 +1,6 @@
 package com.example.orangeapplication.ui.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -37,11 +36,11 @@ class DetailProgramFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initViewModel()
+
         content = arguments?.getParcelable("program")
         content?.let {
             detailProgramViewModel.fetchDetail(it.detaillink)
             initUI(it)
-            setUpObserver()
         }
     }
 
@@ -49,6 +48,7 @@ class DetailProgramFragment : Fragment() {
         detailProgramViewModel = ViewModelProviders.of(
             requireActivity(), ViewModelFactory()
         ).get(DetailProgramViewModel::class.java)
+        setUpObserver()
     }
 
     private fun initUI(content_detail: Contents) {
@@ -66,11 +66,14 @@ class DetailProgramFragment : Fragment() {
         detailProgramViewModel.getDetail().observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Status.SUCCESS -> {
+                    hideProgress()
                     setUpPitch(it.data)
                 }
                 Status.LOADING -> {
+                    showProgress()
                 }
                 Status.ERROR -> {
+                    hideProgress()
                 }
             }
         })
@@ -83,7 +86,14 @@ class DetailProgramFragment : Fragment() {
             else if (!it.contents.seasons.isNullOrEmpty())
                 pitch.text = it.contents.seasons[0].pitch
             else pitch.text = resources.getString(R.string.empty_pitch)
-
         }
+    }
+
+    private fun showProgress() {
+        progressBar.visibility = View.VISIBLE
+    }
+
+    private fun hideProgress(){
+        progressBar.visibility= View.GONE
     }
 }

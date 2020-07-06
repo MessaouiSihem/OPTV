@@ -1,15 +1,19 @@
 package com.example.orangeapplication.ui.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 
 import com.example.orangeapplication.R
@@ -27,6 +31,7 @@ class ProgramsFragment : Fragment() {
 
     private lateinit var programViewModel: ProgramViewModel
     private lateinit var recycleAdapter: ProgramAdapter
+    private val KEYWORD_PREFIX = "title%3D"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,8 +45,8 @@ class ProgramsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initViewModel()
         initUI()
+        initViewModel()
         setUpObserver()
     }
 
@@ -56,12 +61,11 @@ class ProgramsFragment : Fragment() {
             }
         }
 
-
         search_view.setOnQueryTextListener(object :
             SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 programViewModel?.let {
-                    it.fetchPrograms("title%3D$query")
+                    it.fetchPrograms(KEYWORD_PREFIX + "$query")
                     search_view.clearFocus()
                     return true
                 }
@@ -72,8 +76,8 @@ class ProgramsFragment : Fragment() {
             }
         })
 
-        // search_view.setQuery("Enfant", true)
-
+        // set default query text
+        search_view.setQuery("Amour", false)
     }
 
     private fun openDetailProgram(content: Contents) {

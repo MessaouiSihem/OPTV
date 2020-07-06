@@ -10,10 +10,13 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class DetailProgramViewModel(private val repository: ProgramRepository) : ViewModel() {
+class DetailProgramViewModel(
+    private val repository: ProgramRepository
+) : ViewModel() {
 
     private var detailProgram = MutableLiveData<Resource<DetailProgram>>()
     private val compositeDisposable = CompositeDisposable()
+
 
     fun fetchDetail(link: String) {
         detailProgram.postValue(Resource.loading(null))
