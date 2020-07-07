@@ -1,9 +1,7 @@
 package com.example.orangeapplication.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-
 import androidx.lifecycle.ViewModel
 import com.example.orangeapplication.data.model.program.Program
 import com.example.orangeapplication.data.repository.ProgramRepository
@@ -15,7 +13,7 @@ import io.reactivex.schedulers.Schedulers
 
 class ProgramViewModel(private val repository: ProgramRepository) : ViewModel() {
 
-    private var programs = MutableLiveData<Resource<Program>>()
+    var programs = MutableLiveData<Resource<Program>>()
     private val compositeDisposable = CompositeDisposable()
 
     init {

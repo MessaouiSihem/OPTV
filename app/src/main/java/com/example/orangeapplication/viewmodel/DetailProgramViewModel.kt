@@ -29,7 +29,7 @@ class DetailProgramViewModel(
                 }, { throwable ->
                     detailProgram.postValue(
                         Resource.error(
-                            "Une erreur est survenue ! ${throwable.message}",
+                            "Une erreur est survenue !",
                             null
                         )
                     )
