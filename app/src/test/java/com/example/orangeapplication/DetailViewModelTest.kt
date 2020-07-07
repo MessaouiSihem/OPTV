@@ -72,6 +72,9 @@ class DetailViewModelTest {
 
     @Test
     fun must_return_success_response() {
+        // We Must comment those lines in DetailViewModel
+        // .subscribeOn(Schedulers.io())
+        // .observeOn(AndroidSchedulers.mainThread())
         viewModel.fetchDetail("/apps/v2/details/serie/PSGAMEOFTHRW0058624")
 
         verify(observer)?.onChanged(Resource.loading(null))

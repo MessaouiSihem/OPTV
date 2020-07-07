@@ -32,7 +32,7 @@ class ProgramViewModel(private val repository: ProgramRepository) : ViewModel() 
                 }, { throwable ->
                     programs.postValue(
                         Resource.error(
-                            "Une erreur est survenue ! ${throwable.message}",
+                            "Une erreur est survenue !",
                             null
                         )
                     )

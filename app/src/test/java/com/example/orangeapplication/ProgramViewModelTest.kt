@@ -17,6 +17,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.mockito.Mock
+import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 
 @RunWith(JUnit4::class)
@@ -53,5 +54,33 @@ class ProgramViewModelTest {
         // .observeOn(AndroidSchedulers.mainThread())
 
        assertNotNull(viewModel.getPrograms())
+    }
+
+    @Test
+    fun must_return_error_response() {
+        viewModel.fetchPrograms("TATATI")
+
+        // We Must comment those lines in ProgramViewModel
+        // .subscribeOn(Schedulers.io())
+        // .observeOn(AndroidSchedulers.mainThread())
+
+        Mockito.verify(observer)?.onChanged(Resource.loading(null))
+        Mockito.verify(observer)?.onChanged(
+            Resource.error(
+                "Une erreur est survenue !",
+                null
+            )
+        )
+    }
+
+    @Test
+    fun must_return_success_response() {
+        // We Must comment those lines in ProgramViewModel
+        // .subscribeOn(Schedulers.io())
+        // .observeOn(AndroidSchedulers.mainThread())
+        viewModel.fetchPrograms("title%3DAmour")
+
+        Mockito.verify(observer)?.onChanged(Resource.loading(null))
+        Mockito.verify(observer)?.onChanged(Resource.success(null))
     }
 }
