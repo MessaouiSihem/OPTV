@@ -1,4 +1,4 @@
-package com.example.orangeapplication.ui.view
+package com.example.orangeapplication.ui.view.program
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

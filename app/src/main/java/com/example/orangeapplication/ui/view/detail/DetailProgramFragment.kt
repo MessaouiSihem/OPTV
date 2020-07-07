@@ -1,5 +1,6 @@
-package com.example.orangeapplication.ui.view
+package com.example.orangeapplication.ui.view.detail
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.orangeapplication.R
 import com.example.orangeapplication.data.model.detail.DetailProgram
 import com.example.orangeapplication.data.model.program.Contents
+import com.example.orangeapplication.ui.view.player.PlayerActivity
 import com.example.orangeapplication.utils.Status
 import com.example.orangeapplication.viewmodel.DetailProgramViewModel
 import com.example.orangeapplication.viewmodel.base.ViewModelFactory
@@ -59,6 +61,7 @@ class DetailProgramFragment : Fragment() {
             .into(image_fullscreen)
 
         button_play.setOnClickListener {
+            activity?.startActivity(Intent(activity, PlayerActivity::class.java))
         }
     }
 

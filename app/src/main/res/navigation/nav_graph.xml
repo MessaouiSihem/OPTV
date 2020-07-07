@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/fragment_programs"
-        android:name="com.example.orangeapplication.ui.view.ProgramsFragment">
+        android:name="com.example.orangeapplication.ui.view.program.ProgramsFragment">
 
         <action
             android:id="@+id/action_fragment_programs_to_fragment_detail_program"
@@ -16,6 +16,6 @@
 
     <fragment
         android:id="@+id/fragment_detail_program"
-        android:name="com.example.orangeapplication.ui.view.DetailProgramFragment"
+        android:name="com.example.orangeapplication.ui.view.detail.DetailProgramFragment"
         android:label="Game"></fragment>
 </navigation>
