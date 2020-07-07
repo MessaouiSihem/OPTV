@@ -17,11 +17,24 @@ class PlayerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // enableImmersiveMode()
         setContentView(R.layout.activity_player)
 
         initViewModel()
         initialisePlayer()
+    }
+
+
+    private fun initViewModel() {
+        playerViewModel = ViewModelProviders.of(
+            this, ViewModelFactory()
+        ).get(PlayerViewModel::class.java)
+    }
+
+    private fun initialisePlayer() {
+        // Get player instance and attaching the player to a view
+        exoPlayer = playerViewModel.getMediaPlayer().getPlayer(this)
+        playerView.player = exoPlayer
+        playerViewModel.playVideo("https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd")
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
@@ -37,19 +50,6 @@ class PlayerActivity : AppCompatActivity() {
                 // Hide the nav bar and status bar
                 or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_FULLSCREEN)
-    }
-
-    private fun initViewModel() {
-        playerViewModel = ViewModelProviders.of(
-            this, ViewModelFactory()
-        ).get(PlayerViewModel::class.java)
-    }
-
-    private fun initialisePlayer() {
-        // Get player instance and attaching the player to a view
-        exoPlayer = playerViewModel.getMediaPlayer().getPlayer(this)
-        playerView.player = exoPlayer
-        playerViewModel.playVideo("https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd")
     }
 
     override fun onPause() {
