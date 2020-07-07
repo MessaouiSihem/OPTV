@@ -12,8 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".ui.view.ProgramActivity"
+        <activity android:name=".ui.view.player.PlayerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"></activity>
+        <activity
+            android:name=".ui.view.program.ProgramActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
@@ -22,7 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
