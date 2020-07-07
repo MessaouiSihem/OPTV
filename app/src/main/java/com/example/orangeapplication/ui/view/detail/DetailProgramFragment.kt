@@ -3,18 +3,18 @@ package com.example.orangeapplication.ui.view.detail
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleService
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.orangeapplication.R
 import com.example.orangeapplication.data.model.detail.DetailProgram
 import com.example.orangeapplication.data.model.program.Contents
+import com.example.orangeapplication.ui.adapter.SeasonAdapter
 import com.example.orangeapplication.ui.view.player.PlayerActivity
 import com.example.orangeapplication.utils.Status
 import com.example.orangeapplication.viewmodel.DetailProgramViewModel
@@ -27,6 +27,7 @@ class DetailProgramFragment : Fragment() {
 
     private var content: Contents? = null
     private lateinit var detailProgramViewModel: DetailProgramViewModel
+    private lateinit var recycleAdapter: SeasonAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,6 +67,12 @@ class DetailProgramFragment : Fragment() {
         button_play.setOnClickListener {
             activity?.startActivity(Intent(activity, PlayerActivity::class.java))
         }
+
+        recycleAdapter = SeasonAdapter(arrayListOf())
+        season_recycle_view.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = recycleAdapter
+        }
     }
 
     private fun setUpObserver() {
@@ -88,13 +95,24 @@ class DetailProgramFragment : Fragment() {
     }
 
     private fun setUpPitch(data: DetailProgram?) {
+
         data?.let {
+            Log.e("TATATA", it.contents.toString())
+            // For pitch
             if (!it.contents.pitch.isNullOrEmpty())
                 pitch.text = it.contents.pitch
             else if (!it.contents.seasons.isNullOrEmpty())
                 pitch.text = it.contents.seasons[0].pitch
             else pitch.text = resources.getString(R.string.empty_pitch)
+
+            // for Seasons
+            if (!it.contents.seasons.isNullOrEmpty()) {
+                recycleAdapter.addData(it.contents.seasons)
+                recycleAdapter.notifyDataSetChanged()
+                season_recycle_view.visibility = View.VISIBLE
+            }
         }
+
     }
 
     private fun showProgress() {

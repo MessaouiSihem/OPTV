@@ -27,7 +27,10 @@ class ProgramsFragment : Fragment() {
 
     private lateinit var programViewModel: ProgramViewModel
     private lateinit var recycleAdapter: ProgramAdapter
-    private val KEYWORD_PREFIX = "title%3D"
+
+    companion object {
+        private const val KEYWORD_PREFIX = "title%3D"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
