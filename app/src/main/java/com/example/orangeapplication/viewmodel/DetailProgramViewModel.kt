@@ -17,7 +17,7 @@ class DetailProgramViewModel(
     private var detailProgram = MutableLiveData<Resource<DetailProgram>>()
     private val compositeDisposable = CompositeDisposable()
 
-
+    // get Program Detail from link
     fun fetchDetail(link: String) {
         detailProgram.postValue(Resource.loading(null))
         compositeDisposable.add(
@@ -26,7 +26,7 @@ class DetailProgramViewModel(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ detail ->
                     detailProgram.postValue(Resource.success(detail))
-                }, { throwable ->
+                }, { _ ->
                     detailProgram.postValue(
                         Resource.error(
                             "Une erreur est survenue !",
@@ -37,12 +37,12 @@ class DetailProgramViewModel(
         )
     }
 
-
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()
     }
 
+    // Access to detail program livedata
     fun getDetail(): LiveData<Resource<DetailProgram>> {
         return detailProgram
     }

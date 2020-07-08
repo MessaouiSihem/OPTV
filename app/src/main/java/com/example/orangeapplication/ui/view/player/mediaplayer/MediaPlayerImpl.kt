@@ -29,11 +29,11 @@ class MediaPlayerImpl : MediaPlayer {
             DefaultHttpDataSourceFactory(Util.getUserAgent(context, "OrangeApplication"))
 
         // Create a HLS media source pointing to a playlist uri.
-        val hlsMediaSource: DashMediaSource  =
+        val dashMediaSource: DashMediaSource  =
             DashMediaSource .Factory(dataSourceFactory).createMediaSource(Uri.parse(url))
 
         // Prepare the player with the media source.
-        exoPlalyer.prepare(hlsMediaSource)
+        exoPlalyer.prepare(dashMediaSource)
         exoPlalyer.playWhenReady = true
     }
 
